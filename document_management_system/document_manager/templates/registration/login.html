@@ -1,0 +1,16 @@
+{% extends 'document_manager/base.html' %}
+
+{%  block body %}
+	<div>
+		{% if form.errors %}
+			<p> Invalid username or password </p>
+		{% endif %}
+	</div>
+	
+	<form action="{% url 'login'%}" method="POST">
+		{% csrf_token %}
+		<p> Username : {{form.username}} </p>
+		<p> Password : {{form.password}}</p>
+		<input type="submit" name="login" value="Sign in">
+	</form>
+{% endblock %}

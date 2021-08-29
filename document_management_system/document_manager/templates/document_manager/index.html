@@ -1,0 +1,39 @@
+{% extends 'document_manager/base.html' %}
+
+{%  block body %}
+	<h3> An App for managing your pdf documents in a <b>secure </b>way </h3>
+
+	<br><br>
+	{% if user.is_authenticated %}
+			<h2> This months Upload </h2>
+		<table class="table">
+		  <thead>
+		    <tr>
+		      <th scope="col">#</th>
+		      <th scope="col">Name</th>
+		      <th scope="col">Date Of Upload</th>
+		      <th scope="col">Download</th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		  	{% for pdf in todays_pdf_list %}
+		    <tr>
+		      	<th scope="row"> {{forloop.counter}}</th>
+			    <td>{{pdf.name}}</td>
+			    <td>{{pdf.created_at}}</td>
+			    <td><a href="{{ pdf.PDF.url }}" class="btn btn-primary" target="_blank">Download</a></td>
+		    </tr>
+		    {% endfor %}
+		  </tbody>
+		</table>
+
+		<a class="btn btn-primary" href="{% url 'index' %}" role="button">Home Page</a>
+		<a class="btn btn-primary" href="{% url 'upload' %}" role="button">Upload Document</a>
+		<a class="btn btn-primary" href="{% url 'report' %}" role="button">Report</a>
+		
+	{% else %}
+		
+		<h4> Pleas login <a href="{% url 'login' %}"> Here </a> to get started
+		
+	{% endif %}
+{% endblock %}

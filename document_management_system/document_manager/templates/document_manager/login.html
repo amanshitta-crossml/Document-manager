@@ -1,0 +1,17 @@
+{% extends 'document_manager/base.html' %}
+
+{%  block body %}
+	<div>
+		{% for message in messages %}
+			{{message}}
+		{% endfor %}
+	</div>
+	<form method="POST">
+		{% csrf_token %}
+		<input type="text" name="user" placeholde = "Username" required autocomplete="False">
+		<input type="password" name="password" placeholde = "Password" required autocomplete="False">
+		
+		<input type="submit" name="login" value="Sign in">
+
+	</form>
+{% endblock %}
