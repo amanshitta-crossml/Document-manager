@@ -57,7 +57,7 @@ def upload(request):
 			return redirect(reverse('upload'))
 
 		else:
-
+			breakpoint()
 			if doc_form.is_valid():
 				if request.FILES['PDF'].size > 5242880:
 					messages.info(request, "Size can't be more than 5 MiB")
